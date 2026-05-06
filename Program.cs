@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static SOLID.InterfaceSegregationPrinciple_ISP;
 using static SOLID.OpenClosed_Principle;
 using static SOLID.SingleResposibility;
 using static SOLID.SingleResposibility.InvoiceGenerator;
@@ -10,7 +11,7 @@ class Program
     {
         Console.WriteLine("Started!");
         //Console.ReadLine();
-
+        // SIngle responcobility principle
         // 1. Instantiate the dependencies
         var generator = new InvoiceGenerator();
         var repository = new InvoiceRepository();
@@ -35,6 +36,21 @@ class Program
         paymentProcessor.ProcessPayment(new PayPalPayment());
         paymentProcessor.ProcessPayment(new BitcoinPayment());
 
+        //Console.ReadKey();
+
+
+        Console.WriteLine("=== ISP Demo ===\n");
+        HumanWorker human = new HumanWorker();
+        RobotWorker robot = new RobotWorker();
+
+        Console.WriteLine("Human:");
+        human.Work();
+        human.Eat();
+
+        Console.WriteLine("\nRobot:");
+        robot.Work();
+
+        // robot.Eat();   // This won't compile - Good! Robot shouldn't eat.
         Console.ReadKey();
 
     }
